@@ -1,0 +1,33 @@
+{
+  "customLlm.providers": [
+    {
+      "id": "tsubasa",
+      "name": "Tsubasa",
+      "baseUrl": "https://api.tsubasa.sh/v1"
+    }
+  ],
+  "customLlm.models": [
+    {
+      "id": "tsubasa-fast",
+      "name": "Tsubasa Fast",
+      "providerId": "tsubasa",
+      "maxInputTokens": 32768,
+      "maxOutputTokens": 8192,
+      "contextWindow": 32768,
+      "imageInput": false,
+      "toolCalling": false,
+      "thinkingEffort": "off"
+    },
+    {
+      "id": "tsubasa-pro",
+      "name": "Tsubasa Pro",
+      "providerId": "tsubasa",
+      "maxInputTokens": 32768,
+      "maxOutputTokens": 16384,
+      "contextWindow": 32768,
+      "imageInput": false,
+      "toolCalling": false,
+      "thinkingEffort": "off"
+    }
+  ]
+}

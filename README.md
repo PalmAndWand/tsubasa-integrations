@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 30 configuration presets and examples, a Hermes
+This public catalog contains 34 configuration presets and examples, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -23,8 +23,8 @@ key in these files.
 The API base is `https://api.tsubasa.sh/v1`. Public model IDs are `tsubasa-fast`
 and `tsubasa-pro`; both have a 32,768-token context window. Maximum output is
 8,192 tokens for Fast and 16,384 for Pro. Input and requested output must fit the
-context together. The presets require an enabled service and compatible API
-changes that have been verified locally but are not deployed.
+context together. Some clients depend on compatible request-field changes
+verified locally in the Tsubasa API contribution; those changes are not deployed.
 
 ### Command-line clients
 
@@ -40,6 +40,7 @@ remain blocked for agent use even after configuration.
 | Goose       | Save [goose.json](presets/goose.json) as `tsubasa.json` in the configuration directory's `custom_providers` folder.                                                                           |
 | OpenClaw    | Merge [openclaw.json](presets/openclaw.json) into `~/.openclaw/openclaw.json`; select `tsubasa/tsubasa-pro` or `tsubasa/tsubasa-fast`.                                                        |
 | OpenHarness | Merge [openharness.json](presets/openharness.json) into `~/.openharness/settings.json`; run `oh setup tsubasa` to store its key.                                                              |
+| Plandex     | Merge [plandex.json](presets/plandex.json) with `plandex models custom`, then assign a model-pack role. Self-hosted Plandex only.                                                             |
 | OpenGriffin | After setting the key, run `. presets/opengriffin.sh` in the shell that starts the client. [Preset](presets/opengriffin.sh); text chat only.                                                  |
 | nanobot     | Merge [nanobot.json](presets/nanobot.json) into `~/.nanobot/config.json`.                                                                                                                     |
 | Qwen Code   | [qwen.json](presets/qwen.json) is a blocked configuration reference: merge into `settings.json`, restart, then select Tsubasa in `/model`. Do not treat registration as agent readiness.      |
@@ -49,20 +50,25 @@ remain blocked for agent use even after configuration.
 
 For Lua presets, merge the returned table into the named plugin's `setup()`
 options. The [Neovim chat guide](guides/neovim-chat.md) gives complete loading and
-model-selection steps for GP, Parrot, Gen, and ChatGPT.nvim.
+model-selection steps for GP, Parrot, Gen, and ChatGPT.nvim. The
+[additional configuration guide](guides/editor-additional.md) covers gptel,
+Ellama, Custom LLM Provider, and self-hosted Plandex.
 
-| Client             | Artifact and installation                                                                                                                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Continue           | Merge [continue.yaml](presets/continue.yaml) into `config.yaml`; resolve the key through Continue secrets or its `.env` support.                                                                                   |
-| Zed                | Merge [zed.json](presets/zed.json) into user settings; set the named provider's key through Zed or its environment.                                                                                                |
-| CodeCompanion.nvim | Load [codecompanion.lua](presets/codecompanion.lua) into `require("codecompanion").setup()`.                                                                                                                       |
-| avante.nvim        | Load [avante.lua](presets/avante.lua) into `require("avante").setup()`.                                                                                                                                            |
-| minuet-ai.nvim     | Load [minuet.lua](presets/minuet.lua) into `require("minuet").setup()`.                                                                                                                                            |
-| minuet-ai.el       | Evaluate [minuet.el](presets/minuet.el) in your Emacs configuration.                                                                                                                                               |
-| gp.nvim            | Load [gp.lua](presets/gp.lua) into `require("gp").setup()`; two named chat/edit agents are configured.                                                                                                             |
-| parrot.nvim        | Load [parrot.lua](presets/parrot.lua) into `require("parrot").setup()`; select `:PrtProvider tsubasa`.                                                                                                             |
-| gen.nvim           | Load [gen.lua](presets/gen.lua) into `require("gen").setup()`; requires a POSIX shell and curl with `--fail-with-body`.                                                                                            |
-| ChatGPT.nvim       | Load [chatgpt.lua](presets/chatgpt.lua) into `require("chatgpt").setup()`; unset conflicting `OPENAI_API_KEY`, `OPENAI_API_HOST`, and `OPENAI_API_TYPE` first. Chat/edit only; legacy completions are unsupported. |
+| Client              | Artifact and installation                                                                                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Continue            | Merge [continue.yaml](presets/continue.yaml) into `config.yaml`; resolve the key through Continue secrets or its `.env` support.                                                                                   |
+| Zed                 | Merge [zed.json](presets/zed.json) into user settings; set the named provider's key through Zed or its environment.                                                                                                |
+| CodeCompanion.nvim  | Load [codecompanion.lua](presets/codecompanion.lua) into `require("codecompanion").setup()`.                                                                                                                       |
+| avante.nvim         | Load [avante.lua](presets/avante.lua) into `require("avante").setup()`.                                                                                                                                            |
+| minuet-ai.nvim      | Load [minuet.lua](presets/minuet.lua) into `require("minuet").setup()`.                                                                                                                                            |
+| minuet-ai.el        | Evaluate [minuet.el](presets/minuet.el) in your Emacs configuration.                                                                                                                                               |
+| gptel               | Load [gptel.el](presets/gptel.el), then select **Tsubasa** in its menu.                                                                                                                                            |
+| Ellama              | Load [ellama.el](presets/ellama.el), then use `ellama-provider-select`; disable tools for the text route.                                                                                                          |
+| Custom LLM Provider | Merge [vscode-custom-llm.json](presets/vscode-custom-llm.json) into VS Code settings; store the key with **Custom LLM: Manage providers**.                                                                         |
+| gp.nvim             | Load [gp.lua](presets/gp.lua) into `require("gp").setup()`; two named chat/edit agents are configured.                                                                                                             |
+| parrot.nvim         | Load [parrot.lua](presets/parrot.lua) into `require("parrot").setup()`; select `:PrtProvider tsubasa`.                                                                                                             |
+| gen.nvim            | Load [gen.lua](presets/gen.lua) into `require("gen").setup()`; requires a POSIX shell and curl with `--fail-with-body`.                                                                                            |
+| ChatGPT.nvim        | Load [chatgpt.lua](presets/chatgpt.lua) into `require("chatgpt").setup()`; unset conflicting `OPENAI_API_KEY`, `OPENAI_API_HOST`, and `OPENAI_API_TYPE` first. Chat/edit only; legacy completions are unsupported. |
 
 ### Applications
 
@@ -70,18 +76,18 @@ The [application setup guide](app-setup.md) covers the UI fields, saved-setting
 precedence, and supported scope. Shell presets set initial environment values
 for a new process; existing saved application settings can override them.
 
-| Application | Artifact and installation                                                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LibreChat   | Merge [librechat.yaml](presets/librechat.yaml) into `librechat.yaml`; set the key in the server environment.                                                                                         |
-| AnythingLLM | After setting the key, source [anythingllm.sh](presets/anythingllm.sh) before starting the server, or use **Generic OpenAI** in Settings.                                                            |
-| Open WebUI  | Source [open-webui.sh](presets/open-webui.sh) for a new deployment, or add an OpenAI API connection in Admin Settings. Merge existing connection lists.                                              |
-| Dify        | Use [dify.json](presets/dify.json) as a field reference for the official **OpenAI-API-compatible** plugin. It is not an importable app DSL.                                                          |
-| Langflow    | Source [langflow.sh](presets/langflow.sh) before starting Langflow/LFX, or configure **OpenAI Compatible** under Model Providers. Discovery cannot populate models while the service is unavailable. |
+| Application | Artifact and installation                                                                                                                                                       |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LibreChat   | Merge [librechat.yaml](presets/librechat.yaml) into `librechat.yaml`; set the key in the server environment.                                                                    |
+| AnythingLLM | After setting the key, source [anythingllm.sh](presets/anythingllm.sh) before starting the server, or use **Generic OpenAI** in Settings.                                       |
+| Open WebUI  | Source [open-webui.sh](presets/open-webui.sh) for a new deployment, or add an OpenAI API connection in Admin Settings. Merge existing connection lists.                         |
+| Dify        | Use [dify.json](presets/dify.json) as a field reference for the official **OpenAI-API-compatible** plugin. It is not an importable app DSL.                                     |
+| Langflow    | Source [langflow.sh](presets/langflow.sh) before starting Langflow/LFX, or configure **OpenAI Compatible** under Model Providers. Model discovery uses the configured endpoint. |
 
 ### Python examples
 
 Use a separate environment for each framework and install its dependency below.
-After the API is enabled and the key is set, run `python presets/<filename>` or
+After setting the key, run `python presets/<filename>` or
 reuse the configured client in your application. Each example makes one small
 text request and defaults to Pro.
 
@@ -127,16 +133,24 @@ this catalog.
   admin sign-in, model listing, middleware, text/SSE and invalid-session/key
   handling. Browser/socket chat, tools/RAG, and live inference remain unverified.
   See the [application evidence](app-setup.md#controlled-verification).
-- Hermes passed provider discovery, credential isolation, serialization, and
-  response/usage decoding. OpenHarness and nanobot passed configuration and
-  credential checks. OpenGriffin passed text transport; its connector lacks
-  streaming and tool-result support.
+- Hermes and OpenHarness passed native HTTP streaming for both aliases,
+  credential isolation, and request schema/context checks. OpenHarness also
+  decoded fragmented tool calls and forwarded tool-result history. nanobot
+  passed configuration and credential checks. OpenGriffin passed text transport;
+  its connector lacks streaming and tool-result support.
 - The four Python examples decoded one controlled text response per framework;
-  streaming and live behavior were not tested. CodeCompanion and Avante passed
-  adapter/request checks; Minuet.nvim passed its loader. gptme, Zed, LibreChat,
-  and Minuet Emacs were reviewed from source or configuration documentation;
-  their full runtimes were not verified.
+  streaming and live behavior were not tested. CodeCompanion passed
+  adapter/request checks.
+- gptel, Ellama, Minuet Emacs, Minuet Neovim, Avante, and Custom LLM Provider
+  passed 22 actual local HTTP requests covering both aliases, streaming, and
+  HTTP 401. Full graphical editor sessions were not checked. Plandex passed
+  its CLI loader and model conversion; server sessions remain unverified.
+  Zed and LibreChat were reviewed from source or configuration documentation.
+- The installable gptme plugin source is proposed in
+  [PR #1](https://github.com/PalmAndWand/tsubasa-integrations/pull/1). Its installed
+  entry point and real gptme HTTP transport passed eight controlled requests,
+  including text, streaming, history, and HTTP 401. No package release is claimed.
 
 Keep unqualified tools, vision, embeddings, and structured output disabled.
-When the service becomes available, begin with plain text and a small output
-limit, then qualify the specific client workflow before relying on agent use.
+Begin with plain text and a small output limit, then qualify the specific
+client workflow before relying on agent use.

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://plandex.ai/schemas/models-input.schema.json",
+  "providers": [
+    {
+      "name": "tsubasa",
+      "baseUrl": "https://api.tsubasa.sh/v1",
+      "apiKeyEnvVar": "TSUBASA_API_KEY"
+    }
+  ],
+  "models": [
+    {
+      "modelId": "tsubasa/fast",
+      "publisher": "Tsubasa",
+      "description": "Tsubasa Fast",
+      "defaultMaxConvoTokens": 16000,
+      "maxTokens": 32768,
+      "maxOutputTokens": 8192,
+      "reservedOutputTokens": 8192,
+      "preferredOutputFormat": "xml",
+      "hasImageSupport": false,
+      "providers": [
+        {
+          "provider": "custom",
+          "customProvider": "tsubasa",
+          "modelName": "tsubasa-fast"
+        }
+      ]
+    },
+    {
+      "modelId": "tsubasa/pro",
+      "publisher": "Tsubasa",
+      "description": "Tsubasa Pro",
+      "defaultMaxConvoTokens": 16000,
+      "maxTokens": 32768,
+      "maxOutputTokens": 8192,
+      "reservedOutputTokens": 8192,
+      "preferredOutputFormat": "xml",
+      "hasImageSupport": false,
+      "providers": [
+        {
+          "provider": "custom",
+          "customProvider": "tsubasa",
+          "modelName": "tsubasa-pro"
+        }
+      ]
+    }
+  ]
+}
