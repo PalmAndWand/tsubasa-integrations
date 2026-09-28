@@ -1,0 +1,15 @@
+{
+  "model": "openai/tsubasa-pro",
+  "base_url": "https://api.tsubasa.sh/v1",
+  "api_mode": "chat",
+  "max_input_tokens": 30720,
+  "max_output_tokens": 2048,
+  "num_retries": 0,
+  "timeout": 25,
+  "drop_params": false,
+  "caching_prompt": false,
+  "reasoning_effort": null,
+  "capability_overrides": {
+    "supports_prompt_cache_key": false
+  }
+}

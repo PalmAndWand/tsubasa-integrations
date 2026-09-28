@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 52 configuration and example files, a Hermes
+This public catalog contains 54 configuration and example files, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -60,6 +60,10 @@ The following additional recipes use native custom-provider configuration:
 | RA.Aid           | [Guide](guides/ra-aid.md); committed lockfile, native main/expert clients and controlled CLI research completion.                                  |
 | g3               | [Guide](guides/g3.md) · [preset](presets/g3.toml); native backend checked, full CLI unqualified.                                                   |
 | Every Code       | [Guide](guides/every-code.md) · [preset](presets/every-code-limited.toml); restricted instructions and API storage opt-out compatibility required. |
+| Kode CLI         | [Imported-profile guide](guides/kode-cli.md); restricted JSON print mode, both aliases and authentication rejection checked.                       |
+| Agentty          | [Explorer guide](guides/agentty.md); native CLI text with its smaller read-only toolset.                                                           |
+| VT Code          | [Custom-provider guide](guides/vt-code.md); native single-prompt `ask` requests.                                                                   |
+| OpenHands SDK    | [Guide](guides/openhands-sdk.md) · [preset](presets/openhands-sdk.json); published LLM calls and a pinned-source bounded Conversation.             |
 | Freebuff         | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                             |
 | Reasonix         | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                                       |
 | Grok Build       | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.                    |
@@ -123,7 +127,7 @@ for a new process; existing saved application settings can override them.
 Use a separate environment for each framework and install its dependency below.
 After setting the key, run `python presets/<filename>` or reuse the configured
 client in your application. Each example makes one small text request and
-defaults to Pro.
+defaults to Pro, except the DSPy example, which defaults to Fast.
 
 | Framework   | Example                                                  | Dependency used in local verification |
 | ----------- | -------------------------------------------------------- | ------------------------------------- |
@@ -131,6 +135,9 @@ defaults to Pro.
 | Pydantic AI | [tsubasa_pydantic_ai.py](presets/tsubasa_pydantic_ai.py) | `pydantic-ai-slim[openai]==2.51.0`    |
 | LlamaIndex  | [tsubasa_llamaindex.py](presets/tsubasa_llamaindex.py)   | `llama-index-llms-openai-like==0.8.0` |
 | Haystack    | [tsubasa_haystack.py](presets/tsubasa_haystack.py)       | `haystack-ai==3.2.0`                  |
+
+DSPy uses a process-local provider declaration: [setup and checked scope](guides/dspy.md)
+and [example](presets/tsubasa_dspy.py), tested with `dspy==3.4.0`.
 
 ### Hermes provider plugin
 
