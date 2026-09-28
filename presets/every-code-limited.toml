@@ -1,0 +1,46 @@
+experimental_instructions_file = "/absolute/path/to/every-code-instructions.md"
+# Every Code 0.6.194, restricted instructions profile; stock prompt exceeds budget.
+model = "tsubasa-pro"
+model_provider = "tsubasa"
+model_context_window = 32768
+model_max_output_tokens = 512
+model_auto_compact_token_limit = 24000
+planning_use_chat_model = true
+review_use_chat_model = true
+review_resolve_use_chat_model = true
+auto_review_use_chat_model = true
+auto_review_resolve_use_chat_model = true
+auto_drive_use_chat_model = true
+auto_drive_observer_cadence = 0
+auto_upgrade_enabled = false
+approval_policy = "never"
+sandbox_mode = "read-only"
+
+[model_providers.tsubasa]
+name = "Tsubasa"
+base_url = "https://api.tsubasa.sh/v1"
+env_key = "TSUBASA_API_KEY"
+wire_api = "chat"
+requires_openai_auth = false
+supports_websockets = false
+request_max_retries = 0
+stream_max_retries = 0
+
+[profiles.tsubasa-fast]
+model = "tsubasa-fast"
+model_provider = "tsubasa"
+
+[profiles.tsubasa-pro]
+model = "tsubasa-pro"
+model_provider = "tsubasa"
+
+[history]
+persistence = "none"
+
+[tui]
+auto_review_enabled = false
+
+[tools]
+view_image = false
+web_search = false
+search_tool = false

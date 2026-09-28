@@ -1,0 +1,24 @@
+[models]
+default = "tsubasa:tsubasa-pro"
+summarization_default = "tsubasa:tsubasa-fast"
+allowed = ["tsubasa:tsubasa-fast", "tsubasa:tsubasa-pro"]
+openai_prompt_cache_key = false
+
+[models.providers.tsubasa]
+class_path = "langchain_openai:ChatOpenAI"
+display_name = "Tsubasa"
+api_key_env = "TSUBASA_API_KEY"
+base_url = "https://api.tsubasa.sh/v1"
+models = ["tsubasa-fast", "tsubasa-pro"]
+
+[models.providers.tsubasa.params]
+max_tokens = 2048
+max_retries = 0
+use_responses_api = false
+
+[models.providers.tsubasa.profile]
+max_input_tokens = 30720
+max_output_tokens = 2048
+
+[update]
+auto_update = false

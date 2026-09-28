@@ -1,0 +1,18 @@
+agent:
+  templates:
+    demonstrations: []
+  model:
+    name: openai/tsubasa-fast
+    api_base: https://api.tsubasa.sh/v1
+    api_key: $TSUBASA_API_KEY
+    max_input_tokens: 28672
+    max_output_tokens: 4096
+    completion_kwargs:
+      max_tokens: 4096
+    litellm_model_registry: tsubasa-sweagent-costs.json
+    per_instance_call_limit: 2
+    per_instance_cost_limit: 1.0
+    retry:
+      retries: 1
+      min_wait: 0
+      max_wait: 0

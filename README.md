@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 45 configuration presets and examples, a Hermes
+This public catalog contains 52 configuration and example files, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -49,22 +49,28 @@ restricted, tested profile; Letta remains blocked for agent use.
 
 The following additional recipes use native custom-provider configuration:
 
-| Client        | Setup and checked scope                                                                                                               |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Swival        | [Profile guide](guides/swival.md); native CLI text/streaming checked.                                                                 |
-| Ayder         | [TOML guide](guides/ayder.md); shared runtime first response checked.                                                                 |
-| Dexto         | [YAML guide](guides/dexto.md); configuration and production model factory checked.                                                    |
-| Freebuff      | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                |
-| Reasonix      | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                          |
-| Grok Build    | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.       |
-| MiMo Code     | [Guide](guides/mimo-code.md) · [preset](presets/mimo-code.json); text-only CLI profile with a bounded context.                        |
-| Mistral Vibe  | [Guide](guides/mistral-vibe.md) · [preset](presets/mistral-vibe-read-only.toml); legacy harness with only the read_file tool exposed. |
-| Little Coder  | [Guide](guides/little-coder.md) · [preset](presets/little-coder.json); text-only or limited read tools.                               |
-| ZeroStack     | [Guide](guides/zerostack.md) · [preset](presets/zerostack.json); text-only or limited read tools.                                     |
-| Grinta        | [Guide](guides/grinta.md) · [settings](presets/grinta.json); inference adapter checked, complete CLI unqualified.                     |
-| Ante          | [Guide](guides/ante.md) · [catalog](presets/ante.json); short prompt and bounded output.                                              |
-| Factory Droid | [Guide](guides/droid.md) · [settings](presets/droid.json); small-project profile with little remaining context.                       |
-| Copilot CLI   | [Guide](guides/copilot.md) · [environment](presets/copilot.sh); restricted file-read profile only.                                    |
+| Client           | Setup and checked scope                                                                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Swival           | [Profile guide](guides/swival.md); native CLI text/streaming checked.                                                                              |
+| Ayder            | [TOML guide](guides/ayder.md); shared runtime first response checked.                                                                              |
+| Dexto            | [YAML guide](guides/dexto.md); configuration and production model factory checked.                                                                 |
+| KIT              | [Guide](guides/kit-limited.md) · [preset](presets/kit-limited.yaml); short native CLI text turn without tools.                                     |
+| Deep Agents Code | [Guide](guides/deepagents-code.md) · [preset](presets/deepagents-code.toml); bounded headless text, supported cache-key opt-out.                   |
+| SWE-agent        | [Guide](guides/swe-agent.md) · [overlay](presets/swe-agent.yaml); native prompt/model/history/cost path checked, SWE-ReX execution unqualified.    |
+| RA.Aid           | [Guide](guides/ra-aid.md); committed lockfile, native main/expert clients and controlled CLI research completion.                                  |
+| g3               | [Guide](guides/g3.md) · [preset](presets/g3.toml); native backend checked, full CLI unqualified.                                                   |
+| Every Code       | [Guide](guides/every-code.md) · [preset](presets/every-code-limited.toml); restricted instructions and API storage opt-out compatibility required. |
+| Freebuff         | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                             |
+| Reasonix         | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                                       |
+| Grok Build       | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.                    |
+| MiMo Code        | [Guide](guides/mimo-code.md) · [preset](presets/mimo-code.json); text-only CLI profile with a bounded context.                                     |
+| Mistral Vibe     | [Guide](guides/mistral-vibe.md) · [preset](presets/mistral-vibe-read-only.toml); legacy harness with only the read_file tool exposed.              |
+| Little Coder     | [Guide](guides/little-coder.md) · [preset](presets/little-coder.json); text-only or limited read tools.                                            |
+| ZeroStack        | [Guide](guides/zerostack.md) · [preset](presets/zerostack.json); text-only or limited read tools.                                                  |
+| Grinta           | [Guide](guides/grinta.md) · [settings](presets/grinta.json); inference adapter checked, complete CLI unqualified.                                  |
+| Ante             | [Guide](guides/ante.md) · [catalog](presets/ante.json); short prompt and bounded output.                                                           |
+| Factory Droid    | [Guide](guides/droid.md) · [settings](presets/droid.json); small-project profile with little remaining context.                                    |
+| Copilot CLI      | [Guide](guides/copilot.md) · [environment](presets/copilot.sh); restricted file-read profile only.                                                 |
 
 [PiClaw setup](guides/piclaw.md) adds a native Pi model configuration. Its
 model/credential runtime is checked; its full agent and UI remain unqualified.

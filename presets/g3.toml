@@ -1,0 +1,28 @@
+# g3 source 9793144520d290a9ea621a06cf7d8322e6fa4a35.
+# Config loader and OpenAI backend checked; complete CLI remains unqualified.
+# Replace both literal key placeholders. g3 does not expand environment variables here.
+[providers]
+default_provider = "openai.tsubasa-pro"
+planner = "openai.tsubasa-pro"
+coach = "openai.tsubasa-pro"
+player = "openai.tsubasa-pro"
+
+[providers.openai.tsubasa-fast]
+api_key = "REPLACE_WITH_TSUBASA_API_KEY"
+model = "tsubasa-fast"
+base_url = "https://api.tsubasa.sh/v1"
+max_tokens = 4096
+
+[providers.openai.tsubasa-pro]
+api_key = "REPLACE_WITH_TSUBASA_API_KEY"
+model = "tsubasa-pro"
+base_url = "https://api.tsubasa.sh/v1"
+max_tokens = 4096
+
+[agent]
+max_context_length = 32768
+enable_streaming = true
+auto_compact = true
+compaction_threshold_percent = 70.0
+max_retry_attempts = 0
+autonomous_max_retry_attempts = 0

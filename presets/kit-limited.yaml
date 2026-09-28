@@ -1,0 +1,17 @@
+model: tsubasa/tsubasa-pro
+max-tokens: 2048
+max-steps: 1
+thinking-level: off
+no-session: true
+no-core-tools: true
+no-extensions: true
+no-skills: true
+no-agents: true
+no-prompt-templates: true
+providers:
+  tsubasa:
+    name: Tsubasa
+    wire: openai-compat
+    baseUrl: https://api.tsubasa.sh/v1
+    apiKeyEnv:
+      - TSUBASA_API_KEY
