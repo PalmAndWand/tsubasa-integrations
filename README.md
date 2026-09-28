@@ -124,8 +124,9 @@ this catalog.
   preserved shell-sensitive prompt text. ChatGPT.nvim's interactive window was
   not checked. See the [pinned revisions and scope](guides/neovim-chat.md#recorded-local-checks).
 - AnythingLLM, Dify, and Langflow passed controlled text/streaming and credential
-  checks for both models. **Open WebUI coverage is limited to its frontend HTTP
-  helper:** backend chat middleware, full UI, and streaming remain unverified.
+  checks for both models. Open WebUI also passed real backend startup, SQLite,
+  admin sign-in, model listing, middleware, text/SSE and invalid-session/key
+  handling. Browser/socket chat, tools/RAG, and live inference remain unverified.
   See the [application evidence](app-setup.md#controlled-verification).
 - Hermes passed provider discovery, credential isolation, serialization, and
   response/usage decoding. OpenHarness and nanobot passed configuration and

@@ -85,9 +85,12 @@ persisted configuration can take precedence over environment variables.
 
 The route follows
 [Open WebUI's OpenAI-compatible setup guide](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-openai-compatible).
-The controlled check currently covers the real frontend HTTP helper with an
-explicit endpoint. Normal chat also passes through `/api/chat/completions` and
-backend middleware; that complete application route remains unverified here.
+The controlled backend check starts the unmodified app, runs its SQLite
+migrations and admin sign-in, lists the configured models, and sends text and
+streaming requests through `/api/chat/completions`, middleware, and the OpenAI
+router. Invalid application sessions are rejected before reaching the provider.
+An upstream HTTP 401 is surfaced by Open WebUI as HTTP 400 with its error
+message. Browser and socket-based chat remain outside this check.
 
 ## Dify
 
@@ -162,12 +165,12 @@ Tsubasa's request schema and context/output limits; the checks also decoded
 responses and rejected a wrong key. This public catalog contains the settings
 and results, not the private API implementation or its verification scripts.
 
-| App                  | Source tested                              | Verified path                                                                                | Remaining scope                                           |
-| -------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| AnythingLLM          | `128a01575a50f0284aeca75a93399b6fb1db0328` | Real generic provider, both models, text/SSE, 401 and key isolation                          | Full app UI, retrieval, and live inference                |
-| Open WebUI           | `8bd8b4fac5e059578ac0c74b3c18d11139f88b7d` | Real frontend helper, both models, decoded JSON, 401                                         | Backend chat middleware, full UI, SSE, and live inference |
-| Dify official plugin | `f6b4a6a945b4e5909d7c9ceb4c593505f1a3238d` | Real model schema/provider, both models, text/SSE, 401 and key isolation                     | Plugin installation UI, full Dify app, and live inference |
-| Langflow             | `df9711c952a8e798e8fbbad8f25fe60be5ff6018` | Real extension loader, discovery, environment credentials, model construction, text/SSE, 401 | Full server/UI and live inference                         |
+| App                  | Source tested                              | Verified path                                                                                       | Remaining scope                                           |
+| -------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| AnythingLLM          | `128a01575a50f0284aeca75a93399b6fb1db0328` | Real generic provider, both models, text/SSE, 401 and key isolation                                 | Full app UI, retrieval, and live inference                |
+| Open WebUI           | `8bd8b4fac5e059578ac0c74b3c18d11139f88b7d` | Real backend startup/auth, model catalog, middleware, both models, text/SSE and invalid credentials | Browser/socket chat, tools/RAG, and live inference        |
+| Dify official plugin | `f6b4a6a945b4e5909d7c9ceb4c593505f1a3238d` | Real model schema/provider, both models, text/SSE, 401 and key isolation                            | Plugin installation UI, full Dify app, and live inference |
+| Langflow             | `df9711c952a8e798e8fbbad8f25fe60be5ff6018` | Real extension loader, discovery, environment credentials, model construction, text/SSE, 401        | Full server/UI and live inference                         |
 
 The Python apps were checked in separate environments because Dify and LFX
 require incompatible versions of `packaging`. No package constraint was
@@ -178,3 +181,8 @@ uses its source LFX 1.12.3 and OpenAI Compatible bundle 0.1.5 with
 `langchain-openai==1.6.6`. The Node check uses AnythingLLM's `openai==4.95.1`,
 `mock-require`, and `esbuild`. The AnythingLLM fixture replaces only unused
 embedding, user persistence, and application-shell dependencies.
+
+Open WebUI uses its pinned `backend/requirements-slim.txt` in an isolated Python
+3.12 environment. Its TestClient shutdown logs a SQLAlchemy cancellation while
+stopping background tasks; request assertions and schema/budget checks pass,
+and the process exits successfully.
