@@ -1,0 +1,44 @@
+{
+  "$version": 4,
+  "telemetry": {
+    "enabled": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "openai"
+    }
+  },
+  "providerProtocol": {
+    "tsubasa": "openai"
+  },
+  "modelProviders": {
+    "tsubasa": [
+      {
+        "id": "tsubasa-fast",
+        "name": "Tsubasa Fast",
+        "envKey": "TSUBASA_API_KEY",
+        "baseUrl": "https://api.tsubasa.sh/v1",
+        "wireApi": "chat-completions",
+        "generationConfig": {
+          "contextWindowSize": 32768,
+          "samplingParams": {
+            "max_tokens": 2048
+          }
+        }
+      },
+      {
+        "id": "tsubasa-pro",
+        "name": "Tsubasa Pro",
+        "envKey": "TSUBASA_API_KEY",
+        "baseUrl": "https://api.tsubasa.sh/v1",
+        "wireApi": "chat-completions",
+        "generationConfig": {
+          "contextWindowSize": 32768,
+          "samplingParams": {
+            "max_tokens": 2048
+          }
+        }
+      }
+    ]
+  }
+}

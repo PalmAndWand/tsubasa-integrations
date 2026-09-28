@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 44 configuration presets and examples, a Hermes
+This public catalog contains 45 configuration presets and examples, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -29,8 +29,8 @@ deployed.
 
 ### Command-line clients
 
-The entries below configure locally named providers or profiles. Qwen and Letta
-remain blocked for agent use even after configuration.
+The entries below configure locally named providers or profiles. Qwen has a
+restricted, tested profile; Letta remains blocked for agent use.
 
 | Client      | Artifact and installation                                                                                                                                                                     |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,13 +44,16 @@ remain blocked for agent use even after configuration.
 | Plandex     | Merge [plandex.json](presets/plandex.json) with `plandex models custom`, then assign a model-pack role. Self-hosted Plandex only.                                                             |
 | OpenGriffin | After setting the key, run `. presets/opengriffin.sh` in the shell that starts the client. [Preset](presets/opengriffin.sh); text chat only.                                                  |
 | nanobot     | Merge [nanobot.json](presets/nanobot.json) into `~/.nanobot/config.json`.                                                                                                                     |
-| Qwen Code   | [qwen.json](presets/qwen.json) is a blocked configuration reference: merge into `settings.json`, restart, then select Tsubasa in `/model`. Do not treat registration as agent readiness.      |
+| Qwen Code   | [Restricted guide](guides/qwen-limited.md) · [preset](presets/qwen-limited.json); tested headless text and small local file reads. The default tool set exceeds the context budget.           |
 | Letta Code  | [letta.js](presets/letta.js) is a blocked registration example: save as `~/.letta/mods/tsubasa.js`; `/reload` and `/connect` register it in a local agent. The mod cannot guard all requests. |
 
 The following additional recipes use native custom-provider configuration:
 
 | Client        | Setup and checked scope                                                                                                               |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Swival        | [Profile guide](guides/swival.md); native CLI text/streaming checked.                                                                 |
+| Ayder         | [TOML guide](guides/ayder.md); shared runtime first response checked.                                                                 |
+| Dexto         | [YAML guide](guides/dexto.md); configuration and production model factory checked.                                                    |
 | Freebuff      | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                |
 | Reasonix      | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                          |
 | Grok Build    | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.       |
@@ -145,11 +148,16 @@ catalog.
   history, HTTP 401 propagation, and request/schema/context checks. Pi
   additionally covered tool-fragment decoding and cancellation. Editor UIs and
   real models were not exercised by these CLI checks.
-- **Qwen 0.24.6 and Letta 0.33.2 are blocked:** startup estimates were 48,637
-  input + 4,000 output and 99,914 input + 3,886 output, respectively, exceeding
-  32,768 tokens. Qwen safe mode still advertised ten tools; Letta's toolset-none
-  mode advertised eighteen. Letta's mod cannot intercept every request, and
-  selecting a model when resuming has an upstream bug.
+- Qwen 0.24.6's [restricted profile](guides/qwen-limited.md) passed headless
+  streaming, invalid-key handling, and small real file-read round trips for both
+  aliases. Eleven requests passed schema/context checks; three stock or partial
+  exclusion profiles were correctly rejected. The default ten-tool safe-mode
+  request still exceeds the context budget. The release-specific CLI exclusion
+  list is required; unrestricted workflows remain unqualified.
+- Letta 0.33.2 remains blocked: startup estimates were 99,914 input + 3,886
+  output, exceeding 32,768 tokens. Its toolset-none mode still advertised
+  eighteen tools. The mod cannot intercept every request, and selecting a model
+  when resuming has an upstream bug.
 - GP, Parrot, Gen, and ChatGPT.nvim passed 10 real local requests across both
   models through schema and budget checks. Gen rendered the fixture stream and
   preserved shell-sensitive prompt text. ChatGPT.nvim's interactive window was
