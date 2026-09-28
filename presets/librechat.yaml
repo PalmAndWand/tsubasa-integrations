@@ -1,0 +1,11 @@
+endpoints:
+  custom:
+    - name: Tsubasa
+      apiKey: '${TSUBASA_API_KEY}'
+      baseURL: https://api.tsubasa.sh/v1
+      models:
+        default: [tsubasa-fast, tsubasa-pro]
+        fetch: true
+      modelDisplayLabel: Tsubasa
+      titleConvo: false
+      dropParams: [user, frequency_penalty, presence_penalty, logprobs, top_logprobs]

@@ -1,0 +1,58 @@
+{
+  "provider": {
+    "tsubasa": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Tsubasa",
+      "options": {
+        "baseURL": "https://api.tsubasa.sh/v1",
+        "apiKey": "{env:TSUBASA_API_KEY}"
+      },
+      "models": {
+        "tsubasa-fast": {
+          "name": "Tsubasa Fast",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0.2,
+            "output": 1
+          },
+          "reasoning": false,
+          "tool_call": false,
+          "attachment": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "tsubasa-pro": {
+          "name": "Tsubasa Pro",
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 4
+          },
+          "reasoning": false,
+          "tool_call": false,
+          "attachment": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "language_models": {
+    "openai_compatible": {
+      "Tsubasa": {
+        "api_url": "https://api.tsubasa.sh/v1",
+        "available_models": [
+          {
+            "name": "tsubasa-fast",
+            "display_name": "Tsubasa Fast",
+            "max_tokens": 32768,
+            "max_output_tokens": 8192,
+            "capabilities": {
+              "tools": false,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "max_tokens_parameter": true
+            }
+          },
+          {
+            "name": "tsubasa-pro",
+            "display_name": "Tsubasa Pro",
+            "max_tokens": 32768,
+            "max_output_tokens": 16384,
+            "capabilities": {
+              "tools": false,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "max_tokens_parameter": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}

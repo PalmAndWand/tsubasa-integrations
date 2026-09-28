@@ -1,0 +1,5 @@
+[[providers]]
+name = "tsubasa"
+base_url = "https://api.tsubasa.sh/v1"
+api_key_env = "TSUBASA_API_KEY"
+default_model = "tsubasa-pro"

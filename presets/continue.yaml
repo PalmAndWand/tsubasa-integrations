@@ -1,0 +1,26 @@
+name: Tsubasa
+version: 1.0.0
+schema: v1
+models:
+  - name: Tsubasa Fast
+    provider: openai
+    model: tsubasa-fast
+    apiBase: https://api.tsubasa.sh/v1
+    apiKey: ${{ secrets.TSUBASA_API_KEY }}
+    useResponsesApi: false
+    roles: [chat, edit, apply]
+    capabilities: []
+    defaultCompletionOptions:
+      contextLength: 32768
+      maxTokens: 8192
+  - name: Tsubasa Pro
+    provider: openai
+    model: tsubasa-pro
+    apiBase: https://api.tsubasa.sh/v1
+    apiKey: ${{ secrets.TSUBASA_API_KEY }}
+    useResponsesApi: false
+    roles: [chat, edit, apply]
+    capabilities: []
+    defaultCompletionOptions:
+      contextLength: 32768
+      maxTokens: 16384

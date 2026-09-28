@@ -1,0 +1,44 @@
+{
+  "provider": "langgenius/openai_api_compatible/openai_api_compatible",
+  "model_type": "llm",
+  "models": [
+    {
+      "model": "tsubasa-fast",
+      "credentials": {
+        "display_name": "Tsubasa Fast",
+        "endpoint_url": "https://api.tsubasa.sh/v1",
+        "endpoint_model_name": "tsubasa-fast",
+        "mode": "chat",
+        "context_size": "32768",
+        "max_tokens_to_sample": "8192",
+        "token_param_name": "max_tokens",
+        "user_identity_support": "no_support",
+        "stream_include_usage": "enabled",
+        "function_calling_type": "no_call",
+        "stream_function_calling": "not_supported",
+        "vision_support": "no_support",
+        "structured_output_support": "not_supported",
+        "compatibility_mode": "strict"
+      }
+    },
+    {
+      "model": "tsubasa-pro",
+      "credentials": {
+        "display_name": "Tsubasa Pro",
+        "endpoint_url": "https://api.tsubasa.sh/v1",
+        "endpoint_model_name": "tsubasa-pro",
+        "mode": "chat",
+        "context_size": "32768",
+        "max_tokens_to_sample": "16384",
+        "token_param_name": "max_tokens",
+        "user_identity_support": "no_support",
+        "stream_include_usage": "enabled",
+        "function_calling_type": "no_call",
+        "stream_function_calling": "not_supported",
+        "vision_support": "no_support",
+        "structured_output_support": "not_supported",
+        "compatibility_mode": "strict"
+      }
+    }
+  ]
+}

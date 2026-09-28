@@ -1,0 +1,21 @@
+{
+  "name": "tsubasa",
+  "engine": "openai",
+  "display_name": "Tsubasa",
+  "description": "Hosted OpenAI-compatible inference for developer tools.",
+  "api_key_env": "TSUBASA_API_KEY",
+  "base_url": "https://api.tsubasa.sh/v1",
+  "models": [
+    {
+      "name": "tsubasa-fast",
+      "context_limit": 32768
+    },
+    {
+      "name": "tsubasa-pro",
+      "context_limit": 32768
+    }
+  ],
+  "dynamic_models": true,
+  "preserves_thinking": false,
+  "model_doc_link": "https://tsubasa.sh/docs"
+}
