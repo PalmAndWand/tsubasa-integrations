@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gptme-provider-tsubasa"
+version = "0.1.0"
+description = "Tsubasa provider metadata for gptme"
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+dependencies = ["gptme>=0.34,<0.35"]
+
+[project.entry-points."gptme.providers"]
+tsubasa = "gptme_provider_tsubasa:provider"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
