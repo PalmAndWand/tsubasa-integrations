@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 57 configuration and example files, a Hermes
+This public catalog contains 61 configuration and example files, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -68,6 +68,8 @@ The following additional recipes use native custom-provider configuration:
 | RepoAgent        | [Guide](guides/repoagent.md); native documentation generation on a one-function Git repository.                                                    |
 | Moatless Tools   | [Guide](guides/moatless.md) · [preset](presets/moatless.json); bounded native completion and Respond/Finish actions.                               |
 | MetaGPT          | [Guide](guides/metagpt.md) · [preset](presets/metagpt.yaml); native loader/factory, text and returned code parsing.                                |
+| Oh-My-Pi         | [Restricted guide](guides/oh-my-pi-limited.md) · [models](presets/oh-my-pi-limited.yml); native no-tools CLI text and credential checks.           |
+| CODEL            | [Backend guide](guides/codel.md) · [environment](presets/codel.env); provider factories, text helpers and task-record parsing.                     |
 | Freebuff         | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                             |
 | Reasonix         | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                                       |
 | Grok Build       | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.                    |
@@ -143,6 +145,10 @@ defaults to Pro, except the DSPy example, which defaults to Fast.
 DSPy uses a process-local provider declaration: [setup and checked scope](guides/dspy.md)
 and [example](presets/tsubasa_dspy.py), tested with `dspy==3.4.0`.
 
+[AutoGen](guides/autogen-text.md) and [Semantic Kernel](guides/semantic-kernel-text.md)
+use small client factories and native text-agent APIs. Their guides include the
+checked versions, example calls, credential handling and first-turn limits.
+
 ### Hermes provider plugin
 
 Copy both the [plugin manifest](providers/hermes/plugin.yaml) and
@@ -191,7 +197,8 @@ catalog.
   decoded fragmented tool calls and forwarded tool-result history. nanobot
   passed configuration and credential checks. OpenGriffin passed text transport;
   its connector lacks streaming and tool-result support.
-- The four Python examples decoded one controlled text response per framework;
+- The LangChain, Pydantic AI, LlamaIndex and Haystack examples decoded one
+  controlled text response per framework;
   streaming and live behavior were not tested. CodeCompanion passed
   adapter/request checks.
 - gptel, Ellama, Minuet Emacs, Minuet Neovim, Avante, and Custom LLM Provider

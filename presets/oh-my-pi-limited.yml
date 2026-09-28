@@ -1,0 +1,32 @@
+providers:
+  tsubasa:
+    baseUrl: https://api.tsubasa.sh/v1
+    apiKey: TSUBASA_API_KEY
+    api: openai-completions
+    authHeader: true
+    auth: apiKey
+    models:
+      - id: tsubasa-fast
+        name: Tsubasa Fast
+        reasoning: false
+        input: [text]
+        supportsTools: false
+        contextWindow: 32768
+        maxTokens: 2048
+        compat:
+          supportsStore: false
+          supportsDeveloperRole: false
+          supportsReasoningEffort: false
+          maxTokensField: max_tokens
+      - id: tsubasa-pro
+        name: Tsubasa Pro
+        reasoning: false
+        input: [text]
+        supportsTools: false
+        contextWindow: 32768
+        maxTokens: 2048
+        compat:
+          supportsStore: false
+          supportsDeveloperRole: false
+          supportsReasoningEffort: false
+          maxTokensField: max_tokens
