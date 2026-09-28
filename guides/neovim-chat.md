@@ -8,8 +8,8 @@ These Tsubasa-owned files register entries in your local plugin configuration. A
 [Parrot preview example](https://github.com/frankroeder/parrot.nvim/pull/201) is
 submitted as a draft. None is accepted as a stock upstream provider.
 
-> **Note:** These are prelaunch configurations. The public Tsubasa API is
-> currently unavailable. Local fixture checks do not qualify live inference,
+> **Validation:** The September 28, 2026 check of `/v1/models` returned HTTP 404.
+> Local fixture checks do not qualify live inference,
 > tools, structured output, or model quality. gp.nvim also requires the shared
 > API support for `max_completion_tokens` and `top_p` that has been implemented
 > locally but is not deployed.

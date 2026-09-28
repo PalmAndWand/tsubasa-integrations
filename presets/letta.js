@@ -1,11 +1,11 @@
-// PRELAUNCH: agent use is blocked pending tool and context-budget qualification.
+// Agent use is blocked pending tool and context-budget qualification.
 // Letta 0.33.2 sends tool schemas even with --toolset none. Its mod API has no
 // provider-request interception; this distribution gate is not a runtime guard.
 export default function activate(letta) {
   if (!letta.capabilities.providers) return
   return letta.providers.register("tsubasa", {
   "name": "Tsubasa",
-  "description": "Prelaunch: agent use is blocked pending tool and context-budget qualification.",
+  "description": "Agent use is blocked pending tool and context-budget qualification.",
   "api": "openai-completions",
   "baseUrl": "https://api.tsubasa.sh/v1",
   "apiKey": "TSUBASA_API_KEY",

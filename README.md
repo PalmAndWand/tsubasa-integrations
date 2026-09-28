@@ -3,10 +3,9 @@
 This public catalog contains 30 configuration presets and examples, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
-> **Prelaunch — September 27, 2026:** The public service is in website-only
-> mode. `/v1/models` returns HTTP 404, both public models are disabled, and live
-> inference is unavailable. These files prepare configuration; they do not
-> establish live chat, streaming, tools, structured output, or coding quality.
+> **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
+> These files configure clients; local checks do not establish live chat,
+> streaming, tools, structured output, or coding quality.
 
 Most entries are manual settings for a client's existing OpenAI-compatible
 transport. Hermes uses its native provider-plugin extension after you install
