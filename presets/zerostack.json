@@ -1,0 +1,15 @@
+{
+  "provider": "tsubasa",
+  "model": "tsubasa-fast",
+  "context_window": 32768,
+  "max_tokens": 4096,
+  "custom_providers": {
+    "tsubasa": {
+      "provider_type": "openai",
+      "api_style": "completions",
+      "base_url": "https://api.tsubasa.sh/v1",
+      "api_key_env": "TSUBASA_API_KEY",
+      "model": "tsubasa-fast"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "llm_provider": "openai",
+  "llm_model": "tsubasa-fast",
+  "llm_base_url": "https://api.tsubasa.sh/v1",
+  "llm_api_key": "${LLM_API_KEY}",
+  "llm_context_window_tokens": 32768,
+  "llm_max_output_tokens": 4096
+}

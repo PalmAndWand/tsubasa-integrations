@@ -1,0 +1,13 @@
+{
+  "customModels": [
+    {
+      "model": "tsubasa-fast",
+      "displayName": "Tsubasa",
+      "baseUrl": "https://api.tsubasa.sh/v1",
+      "apiKey": "${TSUBASA_API_KEY}",
+      "provider": "generic-chat-completion-api",
+      "maxOutputTokens": 512,
+      "noImageSupport": true
+    }
+  ]
+}

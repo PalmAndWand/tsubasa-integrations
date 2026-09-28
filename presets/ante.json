@@ -1,0 +1,30 @@
+{
+  "providers": {
+    "tsubasa": {
+      "display_name": "Tsubasa",
+      "base_url": "https://api.tsubasa.sh/v1",
+      "wire_style": "OpenAiCompatible",
+      "auth": {
+        "bearer": {
+          "env_key": "TSUBASA_API_KEY"
+        }
+      },
+      "preferred_models": [
+        {
+          "id": "tsubasa-fast",
+          "context_limit": 32768,
+          "max_tokens": 512,
+          "supported_efforts": [],
+          "support_vision": false
+        },
+        {
+          "id": "tsubasa-pro",
+          "context_limit": 32768,
+          "max_tokens": 512,
+          "supported_efforts": [],
+          "support_vision": false
+        }
+      ]
+    }
+  }
+}

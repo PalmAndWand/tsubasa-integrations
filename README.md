@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 34 configuration presets and examples, a Hermes
+This public catalog contains 40 configuration presets and examples, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -22,9 +22,10 @@ key in these files.
 
 The API base is `https://api.tsubasa.sh/v1`. Public model IDs are `tsubasa-fast`
 and `tsubasa-pro`; both have a 32,768-token context window. Maximum output is
-8,192 tokens for Fast and 16,384 for Pro. Input and requested output must fit the
-context together. Some clients depend on compatible request-field changes
-verified locally in the Tsubasa API contribution; those changes are not deployed.
+8,192 tokens for Fast and 16,384 for Pro. Input and requested output must fit
+the context together. Some clients depend on compatible request-field changes
+verified locally in the Tsubasa API contribution; those changes are not
+deployed.
 
 ### Command-line clients
 
@@ -46,11 +47,23 @@ remain blocked for agent use even after configuration.
 | Qwen Code   | [qwen.json](presets/qwen.json) is a blocked configuration reference: merge into `settings.json`, restart, then select Tsubasa in `/model`. Do not treat registration as agent readiness.      |
 | Letta Code  | [letta.js](presets/letta.js) is a blocked registration example: save as `~/.letta/mods/tsubasa.js`; `/reload` and `/connect` register it in a local agent. The mod cannot guard all requests. |
 
+The following additional recipes use native custom-provider configuration:
+
+| Client        | Setup and checked scope                                                                                                |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Freebuff      | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified. |
+| Little Coder  | [Guide](guides/little-coder.md) · [preset](presets/little-coder.json); text-only or limited read tools.                |
+| ZeroStack     | [Guide](guides/zerostack.md) · [preset](presets/zerostack.json); text-only or limited read tools.                      |
+| Grinta        | [Guide](guides/grinta.md) · [settings](presets/grinta.json); inference adapter checked, complete CLI unqualified.      |
+| Ante          | [Guide](guides/ante.md) · [catalog](presets/ante.json); short prompt and bounded output.                               |
+| Factory Droid | [Guide](guides/droid.md) · [settings](presets/droid.json); small-project profile with little remaining context.        |
+| Copilot CLI   | [Guide](guides/copilot.md) · [environment](presets/copilot.sh); restricted file-read profile only.                     |
+
 ### Editors
 
 For Lua presets, merge the returned table into the named plugin's `setup()`
-options. The [Neovim chat guide](guides/neovim-chat.md) gives complete loading and
-model-selection steps for GP, Parrot, Gen, and ChatGPT.nvim. The
+options. The [Neovim chat guide](guides/neovim-chat.md) gives complete loading
+and model-selection steps for GP, Parrot, Gen, and ChatGPT.nvim. The
 [additional configuration guide](guides/editor-additional.md) covers gptel,
 Ellama, Custom LLM Provider, and self-hosted Plandex.
 
@@ -70,6 +83,11 @@ Ellama, Custom LLM Provider, and self-hosted Plandex.
 | gen.nvim            | Load [gen.lua](presets/gen.lua) into `require("gen").setup()`; requires a POSIX shell and curl with `--fail-with-body`.                                                                                            |
 | ChatGPT.nvim        | Load [chatgpt.lua](presets/chatgpt.lua) into `require("chatgpt").setup()`; unset conflicting `OPENAI_API_KEY`, `OPENAI_API_HOST`, and `OPENAI_API_TYPE` first. Chat/edit only; legacy completions are unsupported. |
 
+For Devin Desktop / Windsurf, see the
+[OpenCode ACP setup reference](guides/devin-desktop.md). That desktop UI path
+remains unqualified. [Tabnine BYOAI field guidance](guides/tabnine.md) is also
+available for eligible deployments; its admin UI has not been checked.
+
 ### Applications
 
 The [application setup guide](app-setup.md) covers the UI fields, saved-setting
@@ -87,9 +105,9 @@ for a new process; existing saved application settings can override them.
 ### Python examples
 
 Use a separate environment for each framework and install its dependency below.
-After setting the key, run `python presets/<filename>` or
-reuse the configured client in your application. Each example makes one small
-text request and defaults to Pro.
+After setting the key, run `python presets/<filename>` or reuse the configured
+client in your application. Each example makes one small text request and
+defaults to Pro.
 
 | Framework   | Example                                                  | Dependency used in local verification |
 | ----------- | -------------------------------------------------------- | ------------------------------------- |
@@ -102,37 +120,40 @@ text request and defaults to Pro.
 
 Copy both the [plugin manifest](providers/hermes/plugin.yaml) and
 [registration module](providers/hermes/__init__.py) into
-`$HERMES_HOME/plugins/model-providers/tsubasa` (default home: `~/.hermes`), keeping
-their filenames. Set `TSUBASA_API_KEY` before starting Hermes. The plugin uses
-Hermes's provider discovery mechanism; it is not bundled with upstream Hermes.
-It does not advertise tools or vision or supply agentic fallback models.
+`$HERMES_HOME/plugins/model-providers/tsubasa` (default home: `~/.hermes`),
+keeping their filenames. Set `TSUBASA_API_KEY` before starting Hermes. The
+plugin uses Hermes's provider discovery mechanism; it is not bundled with
+upstream Hermes. It does not advertise tools or vision or supply agentic
+fallback models.
 
 ## What has been checked
 
-Verification used synthetic responses and credentials with pinned clients.
-These results do not establish live inference or full application readiness.
-The private API implementation and verification scripts are not distributed in
-this catalog.
+Verification used synthetic responses and credentials with pinned clients. These
+results do not establish live inference or full application readiness. The
+private API implementation and verification scripts are not distributed in this
+catalog.
 
 - OpenCode 1.18.32, Kilo 7.8.1, Pi 0.87.1, Continue 1.5.47, Goose 1.52.0, and
-  OpenClaw 2026.9.6 passed controlled streaming for both models, resumed history,
-  HTTP 401 propagation, and request/schema/context checks. Pi additionally
-  covered tool-fragment decoding and cancellation. Editor UIs and real models
-  were not exercised by these CLI checks.
-- **Qwen 0.24.6 and Letta 0.33.2 are blocked:** startup estimates were
-  48,637 input + 4,000 output and 99,914 input + 3,886 output, respectively,
-  exceeding 32,768 tokens. Qwen safe mode still advertised ten tools; Letta's
-  toolset-none mode advertised eighteen. Letta's mod cannot intercept every
-  request, and selecting a model when resuming has an upstream bug.
+  OpenClaw 2026.9.6 passed controlled streaming for both models, resumed
+  history, HTTP 401 propagation, and request/schema/context checks. Pi
+  additionally covered tool-fragment decoding and cancellation. Editor UIs and
+  real models were not exercised by these CLI checks.
+- **Qwen 0.24.6 and Letta 0.33.2 are blocked:** startup estimates were 48,637
+  input + 4,000 output and 99,914 input + 3,886 output, respectively, exceeding
+  32,768 tokens. Qwen safe mode still advertised ten tools; Letta's toolset-none
+  mode advertised eighteen. Letta's mod cannot intercept every request, and
+  selecting a model when resuming has an upstream bug.
 - GP, Parrot, Gen, and ChatGPT.nvim passed 10 real local requests across both
   models through schema and budget checks. Gen rendered the fixture stream and
   preserved shell-sensitive prompt text. ChatGPT.nvim's interactive window was
-  not checked. See the [pinned revisions and scope](guides/neovim-chat.md#recorded-local-checks).
-- AnythingLLM, Dify, and Langflow passed controlled text/streaming and credential
-  checks for both models. Open WebUI also passed real backend startup, SQLite,
-  admin sign-in, model listing, middleware, text/SSE and invalid-session/key
-  handling. Browser/socket chat, tools/RAG, and live inference remain unverified.
-  See the [application evidence](app-setup.md#controlled-verification).
+  not checked. See the
+  [pinned revisions and scope](guides/neovim-chat.md#recorded-local-checks).
+- AnythingLLM, Dify, and Langflow passed controlled text/streaming and
+  credential checks for both models. Open WebUI also passed real backend
+  startup, SQLite, admin sign-in, model listing, middleware, text/SSE and
+  invalid-session/key handling. Browser/socket chat, tools/RAG, and live
+  inference remain unverified. See the
+  [application evidence](app-setup.md#controlled-verification).
 - Hermes and OpenHarness passed native HTTP streaming for both aliases,
   credential isolation, and request schema/context checks. OpenHarness also
   decoded fragmented tool calls and forwarded tool-result history. nanobot
@@ -143,14 +164,15 @@ this catalog.
   adapter/request checks.
 - gptel, Ellama, Minuet Emacs, Minuet Neovim, Avante, and Custom LLM Provider
   passed 22 actual local HTTP requests covering both aliases, streaming, and
-  HTTP 401. Full graphical editor sessions were not checked. Plandex passed
-  its CLI loader and model conversion; server sessions remain unverified.
-  Zed and LibreChat were reviewed from source or configuration documentation.
+  HTTP 401. Full graphical editor sessions were not checked. Plandex passed its
+  CLI loader and model conversion; server sessions remain unverified. Zed and
+  LibreChat were reviewed from source or configuration documentation.
 - The installable gptme plugin source is proposed in
-  [PR #1](https://github.com/PalmAndWand/tsubasa-integrations/pull/1). Its installed
-  entry point and real gptme HTTP transport passed eight controlled requests,
-  including text, streaming, history, and HTTP 401. No package release is claimed.
+  [PR #1](https://github.com/PalmAndWand/tsubasa-integrations/pull/1). Its
+  installed entry point and real gptme HTTP transport passed eight controlled
+  requests, including text, streaming, history, and HTTP 401. No package release
+  is claimed.
 
 Keep unqualified tools, vision, embeddings, and structured output disabled.
-Begin with plain text and a small output limit, then qualify the specific
-client workflow before relying on agent use.
+Begin with plain text and a small output limit, then qualify the specific client
+workflow before relying on agent use.
