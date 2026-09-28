@@ -1,0 +1,40 @@
+# Checked with official Grok Build 1.0.41 (4220f3b224a6).
+# Use the restricted command in grok-build.md; live tools are not qualified.
+[cli]
+auto_update = false
+
+[features]
+telemetry = false
+remote_fetch = false
+turn_summary = false
+title_refresh = false
+
+[managed_mcps]
+enabled = false
+
+[models]
+default = "tsubasa-pro"
+session_summary = "tsubasa-fast"
+allowed_models = ["tsubasa-fast", "tsubasa-pro"]
+
+[model.tsubasa-fast]
+model = "tsubasa-fast"
+name = "Tsubasa Fast"
+base_url = "https://api.tsubasa.sh/v1"
+env_key = "TSUBASA_API_KEY"
+api_backend = "chat_completions"
+context_window = 32768
+max_completion_tokens = 4096
+stream_tool_calls = false
+supports_backend_search = false
+
+[model.tsubasa-pro]
+model = "tsubasa-pro"
+name = "Tsubasa Pro"
+base_url = "https://api.tsubasa.sh/v1"
+env_key = "TSUBASA_API_KEY"
+api_backend = "chat_completions"
+context_window = 32768
+max_completion_tokens = 4096
+stream_tool_calls = false
+supports_backend_search = false

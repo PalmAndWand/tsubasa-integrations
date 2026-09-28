@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 40 configuration presets and examples, a Hermes
+This public catalog contains 44 configuration presets and examples, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -49,15 +49,22 @@ remain blocked for agent use even after configuration.
 
 The following additional recipes use native custom-provider configuration:
 
-| Client        | Setup and checked scope                                                                                                |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Freebuff      | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified. |
-| Little Coder  | [Guide](guides/little-coder.md) · [preset](presets/little-coder.json); text-only or limited read tools.                |
-| ZeroStack     | [Guide](guides/zerostack.md) · [preset](presets/zerostack.json); text-only or limited read tools.                      |
-| Grinta        | [Guide](guides/grinta.md) · [settings](presets/grinta.json); inference adapter checked, complete CLI unqualified.      |
-| Ante          | [Guide](guides/ante.md) · [catalog](presets/ante.json); short prompt and bounded output.                               |
-| Factory Droid | [Guide](guides/droid.md) · [settings](presets/droid.json); small-project profile with little remaining context.        |
-| Copilot CLI   | [Guide](guides/copilot.md) · [environment](presets/copilot.sh); restricted file-read profile only.                     |
+| Client        | Setup and checked scope                                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Freebuff      | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                |
+| Reasonix      | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                          |
+| Grok Build    | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.       |
+| MiMo Code     | [Guide](guides/mimo-code.md) · [preset](presets/mimo-code.json); text-only CLI profile with a bounded context.                        |
+| Mistral Vibe  | [Guide](guides/mistral-vibe.md) · [preset](presets/mistral-vibe-read-only.toml); legacy harness with only the read_file tool exposed. |
+| Little Coder  | [Guide](guides/little-coder.md) · [preset](presets/little-coder.json); text-only or limited read tools.                               |
+| ZeroStack     | [Guide](guides/zerostack.md) · [preset](presets/zerostack.json); text-only or limited read tools.                                     |
+| Grinta        | [Guide](guides/grinta.md) · [settings](presets/grinta.json); inference adapter checked, complete CLI unqualified.                     |
+| Ante          | [Guide](guides/ante.md) · [catalog](presets/ante.json); short prompt and bounded output.                                              |
+| Factory Droid | [Guide](guides/droid.md) · [settings](presets/droid.json); small-project profile with little remaining context.                       |
+| Copilot CLI   | [Guide](guides/copilot.md) · [environment](presets/copilot.sh); restricted file-read profile only.                                    |
+
+[PiClaw setup](guides/piclaw.md) adds a native Pi model configuration. Its
+model/credential runtime is checked; its full agent and UI remain unqualified.
 
 ### Editors
 

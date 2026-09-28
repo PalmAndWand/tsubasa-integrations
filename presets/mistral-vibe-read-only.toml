@@ -1,0 +1,41 @@
+# Checked with Mistral Vibe 2.25.8 and --legacy-harness.
+# See mistral-vibe.md for the bounded profile and tools-disabled issue.
+active_model = "tsubasa-pro"
+allowed_models = ["tsubasa-fast", "tsubasa-pro"]
+enabled_tools = ["read_file"]
+disabled_skills = ["*"]
+enable_connectors = false
+enable_telemetry = false
+enable_update_checks = false
+
+[experiments]
+enable = false
+
+[[providers]]
+name = "tsubasa"
+api_base = "https://api.tsubasa.sh/v1"
+api_key_env_var = "TSUBASA_API_KEY"
+api_style = "openai"
+backend = "generic"
+
+[[models]]
+name = "tsubasa-fast"
+alias = "tsubasa-fast"
+display_name = "Tsubasa Fast"
+provider = "tsubasa"
+input_price = 0.20
+output_price = 1.00
+auto_compact_threshold = 24000
+thinking = "off"
+supports_images = false
+
+[[models]]
+name = "tsubasa-pro"
+alias = "tsubasa-pro"
+display_name = "Tsubasa Pro"
+provider = "tsubasa"
+input_price = 0.50
+output_price = 4.00
+auto_compact_threshold = 24000
+thinking = "off"
+supports_images = false

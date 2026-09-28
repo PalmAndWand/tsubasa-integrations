@@ -1,0 +1,64 @@
+{
+  "$schema": "https://mimo.xiaomi.com/mimocode/config.json",
+  "model": "tsubasa/tsubasa-pro",
+  "enabled_providers": ["tsubasa"],
+  "tools": {
+    "*": false
+  },
+  "permission": {
+    "*": "deny"
+  },
+  "compaction": {
+    "auto": true,
+    "max_context": 24000
+  },
+  "provider": {
+    "tsubasa": {
+      "name": "Tsubasa",
+      "npm": "@ai-sdk/openai-compatible",
+      "only_configured_models": true,
+      "options": {
+        "baseURL": "https://api.tsubasa.sh/v1",
+        "apiKey": "{env:TSUBASA_API_KEY}"
+      },
+      "models": {
+        "tsubasa-fast": {
+          "name": "Tsubasa Fast",
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          },
+          "cost": {
+            "input": 0.2,
+            "output": 1.0
+          },
+          "reasoning": false,
+          "tool_call": false,
+          "attachment": false,
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "tsubasa-pro": {
+          "name": "Tsubasa Pro",
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 4.0
+          },
+          "reasoning": false,
+          "tool_call": false,
+          "attachment": false,
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        }
+      }
+    }
+  }
+}
