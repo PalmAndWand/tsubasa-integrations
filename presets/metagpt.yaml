@@ -1,0 +1,8 @@
+llm:
+  api_type: openai
+  model: tsubasa-fast
+  api_key: REPLACE_WITH_TSUBASA_API_KEY
+  base_url: https://api.tsubasa.sh/v1
+  max_token: 4096
+  context_length: 28672
+  timeout: 60

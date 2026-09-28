@@ -1,0 +1,20 @@
+{
+  "tsubasa-fast": {
+    "completion_model_class": "moatless.completion.tool_call.ToolCallCompletionModel",
+    "model": "openai/tsubasa-fast",
+    "model_base_url": "https://api.tsubasa.sh/v1",
+    "max_tokens": 4096,
+    "temperature": 0.0,
+    "timeout": 60,
+    "message_cache": false
+  },
+  "tsubasa-pro": {
+    "completion_model_class": "moatless.completion.tool_call.ToolCallCompletionModel",
+    "model": "openai/tsubasa-pro",
+    "model_base_url": "https://api.tsubasa.sh/v1",
+    "max_tokens": 4096,
+    "temperature": 0.0,
+    "timeout": 60,
+    "message_cache": false
+  }
+}

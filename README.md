@@ -1,6 +1,6 @@
 # Tsubasa integrations
 
-This public catalog contains 54 configuration and example files, a Hermes
+This public catalog contains 57 configuration and example files, a Hermes
 provider plugin, and setup guides for connecting existing clients to Tsubasa.
 
 > **Validation — September 28, 2026:** Our `/v1/models` check returned HTTP 404.
@@ -64,6 +64,10 @@ The following additional recipes use native custom-provider configuration:
 | Agentty          | [Explorer guide](guides/agentty.md); native CLI text with its smaller read-only toolset.                                                           |
 | VT Code          | [Custom-provider guide](guides/vt-code.md); native single-prompt `ask` requests.                                                                   |
 | OpenHands SDK    | [Guide](guides/openhands-sdk.md) · [preset](presets/openhands-sdk.json); published LLM calls and a pinned-source bounded Conversation.             |
+| Ferrum           | [Linux CLI guide](guides/ferrum.md) · [preset](presets/ferrum.toml); native no-tools JSON/SSE and authentication checks.                           |
+| RepoAgent        | [Guide](guides/repoagent.md); native documentation generation on a one-function Git repository.                                                    |
+| Moatless Tools   | [Guide](guides/moatless.md) · [preset](presets/moatless.json); bounded native completion and Respond/Finish actions.                               |
+| MetaGPT          | [Guide](guides/metagpt.md) · [preset](presets/metagpt.yaml); native loader/factory, text and returned code parsing.                                |
 | Freebuff         | [BYOK guide](guides/freebuff.md); requires a CLI build with native BYOK; source factory checked, full CLI unqualified.                             |
 | Reasonix         | [Custom-provider guide](guides/reasonix.md); native configuration/transport checked, desktop UI unqualified.                                       |
 | Grok Build       | [Guide](guides/grok-build.md) · [preset](presets/grok-build.toml); restricted official CLI profile, including its title helper.                    |

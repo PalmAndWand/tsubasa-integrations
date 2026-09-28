@@ -1,0 +1,24 @@
+provider = "tsubasa"
+model = "tsubasa-fast"
+thinking = "off"
+max_context_tokens = 32768
+max_tool_rounds = 1
+
+[providers.tsubasa]
+type = "openai-compatible"
+base_url = "https://api.tsubasa.sh/v1"
+api_key_env = "TSUBASA_API_KEY"
+default_model = "tsubasa-fast"
+streaming = true
+
+[models.tsubasa-fast]
+provider = "tsubasa"
+actual_model = "tsubasa-fast"
+max_context_tokens = 32768
+supports_images = false
+
+[models.tsubasa-pro]
+provider = "tsubasa"
+actual_model = "tsubasa-pro"
+max_context_tokens = 32768
+supports_images = false
